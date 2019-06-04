@@ -54,17 +54,23 @@ MovieBST movies;
 
   return 0;
 }
-
 bool parseLine(string &line, string &movieName, double &movieRating) {
   if(line.length() <= 0) return false;
   string tempRating = "";
+
   bool flag = false;
   movieName = tempRating = "", movieRating = 0.0, flag = false;
+
   for (int i = 0; i < line.length(); i++){
     if(flag) tempRating += line[i];
-    else if(line[i]==',') flag = true;
-    else movieName += line[i];
+    else if(line[i]==','&& line[0]!='"') flag = true;
+    else {
+      if(i==0 && line[0]=='"') continue;
+      if(line[i]=='"'){ i++; flag=true; continue;}
+      movieName += line[i];
+    }
   }
+  
   movieRating = stod(tempRating);
   return true;
 }

@@ -86,10 +86,16 @@ Movie* MovieBST::findMax(Movie* root) {
 }
 
 Movie* MovieBST::findMaxHelper(Movie* root, Movie* max) {
-    if (root) {
-       if (root->rating > max->rating) max = root;
-       findMaxHelper(root->left, max);
-       findMaxHelper(root->right, max);
+    max = root;
+    for (Movie* left = root; left; left = left->left)
+    {
+        if (left->rating > max->rating)
+            max = left;
+    }
+    for (Movie* right = root; right; right = right->right)
+    {
+        if (right->rating > max->rating)
+            max = right;
     }
     return max;
 }
