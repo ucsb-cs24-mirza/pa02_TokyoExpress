@@ -37,6 +37,10 @@ void testPrefix() {
   MovieBST test;
   test.insert("lol", 3.3);
   test.insert("mol", 4.5);
+  test.insert("fol", 4.5);
+  test.insert("eee", 4.2);
+  test.insert("lqw", 3.4);
+  test.insert("lll", 6.7);
   Movie* lol = test.findPrefix("l", test.root);
   test.printPreOrder(lol);
 }

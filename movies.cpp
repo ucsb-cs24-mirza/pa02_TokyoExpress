@@ -82,22 +82,24 @@ Movie* MovieBST::findPrefixHelper(string prefix, MovieBST* fixed, Movie* root) {
 
 Movie* MovieBST::findMax(Movie* root) {
     Movie* max = root;
-    return findMaxHelper(root, max);
+    return findMaxHelper(root);
 }
 
-Movie* MovieBST::findMaxHelper(Movie* root, Movie* max) {
-    max = root;
-    for (Movie* left = root; left; left = left->left)
-    {
-        if (left->rating > max->rating)
-            max = left;
+Movie* MovieBST::findMaxHelper(Movie* root) {
+    Movie* max = root;
+    if(root->left) {
+        Movie* leftMax = findMaxHelper(root->left);
+        if(max->rating < leftMax->rating)
+            max = leftMax;
     }
-    for (Movie* right = root; right; right = right->right)
-    {
-        if (right->rating > max->rating)
-            max = right;
+
+    if(root->right) {
+        Movie* rightMax = findMaxHelper(root->right);
+        if(max->rating < rightMax->rating)
+            max = rightMax;
     }
     return max;
+
 }
 
 

@@ -36,7 +36,7 @@ class MovieBST {
     Movie* findPrefix(string prefix, Movie* root);
     Movie* findPrefixHelper(string prefix, MovieBST* fixed, Movie* root);
     Movie* findMax(Movie* root);
-    Movie* findMaxHelper(Movie* root, Movie* max); 
+    Movie* findMaxHelper(Movie* root); 
     void analytics();
 
 }; 
