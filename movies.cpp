@@ -23,8 +23,10 @@ void MovieBST::empty(Movie *m) {
 }
 
 bool MovieBST::insert(string name, double rate) {
+  N_visited = 0;
   if(!root) {
     root = new Movie(name, rate, 0);
+    N = 1;
     return true;
   }
   return insert(name, rate, root, 0);
@@ -37,6 +39,8 @@ bool MovieBST::insert(string name, double rate, Movie* m, int deep) {
     if(m->left) return insert(name, rate, m->left, deep+1);
     else {
       m->left = new Movie(name, rate, deep+1);
+      N++;
+      N_visited = deep + 1;
       return true;
     }
   }
@@ -44,6 +48,8 @@ bool MovieBST::insert(string name, double rate, Movie* m, int deep) {
     if(m->right) return insert(name, rate, m->right, deep+1);
     else {
       m->right = new Movie(name, rate, deep+1);
+      N++;
+      N_visited = deep + 1;
       return true;
     }
   }

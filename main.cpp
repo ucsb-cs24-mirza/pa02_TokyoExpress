@@ -37,10 +37,14 @@ int main(int argc, char** argv){
   }
 
 MovieBST movies;
-
+vector<string> names;
+ofstream myfile;
+myfile.open("analytics.txt");
   // Read each file and store the name and rating
   while (getline (movieFile, line) && parseLine(line, movieName, movieRating)){
     movies.insert(movieName, movieRating);
+    names.push_back(movieName);
+    myfile << movies.N << " " << movies.N_visited << endl;
   }
   movieFile.close();
 
@@ -50,6 +54,17 @@ MovieBST movies;
     Movie* temp = movies.findMax(movies.findPrefix(argv[3], movies.root));
     cout << "Best movie is " << temp->movie_name << " with rating " << temp->rating << endl;
     
+  }
+  else {
+    clock_t t;
+    t = clock();
+    for (int i = 0; i < atoi(argv[3]); i++) {
+      for (int j = 0; j < names.size(); j++) {
+        movies.find(names[j], movies.root);
+      }
+    }
+    t = clock() - t;
+    cout << t << endl;
   }
 
   return 0;

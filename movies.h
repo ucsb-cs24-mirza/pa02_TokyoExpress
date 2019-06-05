@@ -28,6 +28,8 @@ class MovieBST {
     MovieBST(Movie* m);
     ~MovieBST();                  // destructor
     Movie *root;
+    int N;
+    int N_visited;
     void empty(Movie* m);
     bool insert(string name, double rate);
     bool insert(string name, double rate, Movie* m, int deep);
@@ -37,7 +39,6 @@ class MovieBST {
     Movie* findPrefixHelper(string prefix, MovieBST* fixed, Movie* root);
     Movie* findMax(Movie* root);
     Movie* findMaxHelper(Movie* root); 
-    void analytics();
 
 }; 
 
